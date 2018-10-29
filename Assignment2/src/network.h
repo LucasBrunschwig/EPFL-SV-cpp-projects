@@ -12,16 +12,21 @@ class Network {
 public:
     Network() {}
 
-/*! Resizes the list of nodes (\ref values) */
-    void resize(const size_t&);
-/*! Adds a bidirectional link between two nodes
+/*! 
+    Resizes the list of nodes (\ref values) and also resets all values.
+    After this function is called \ref values has size *n* and contains random numbers (normal distribution, mean=0, sd=1).
+ */
+    void resize(const size_t &n);
+/*! 
+  Adds a bidirectional link between two nodes
   @param[in] a,b the indexes if the two nodes 
-  @param[out] success the link was succesfully inserted
+  @param[out] success the link was succesfully inserted (true if both nodes exist and the link did not exist yet)
  */
     bool add_link(const size_t&, const size_t&);
-/*! Creates random connections between nodes: each node *n* will be linked with *degree(n)* other nodes (randomly chosen) where *degree(n)* is Poisson-distributed.
+/*! Creates random connections between nodes: each node *n* will be linked with *degree(n)* other nodes (randomly chosen),
+  where *degree(n)* is Poisson-distributed.
 
-  All previous links are cleared first.
+  All previous links are erased first.
   @param mean_deg the average of the Poisson distribution.
  */
     size_t random_connect(const double&);
@@ -36,7 +41,9 @@ public:
     size_t degree(const size_t &_n) const;
 /*! Value of node no *n* */
     double value(const size_t &_n) const;
-/*! All node values in descending order */
+/*! All node values in descending order.
+    \ref values is left unchanged by this operation.
+ */
     std::vector<double> sorted_values() const;
 /*! All neighbors (linked) nodes of node no *n* */
     std::vector<size_t> neighbors(const size_t&) const;
