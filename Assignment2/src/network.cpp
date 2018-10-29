@@ -5,6 +5,8 @@
 #include "random.h"
 #include <iostream>
 
+/*Modification test*/
+
 typedef std::multimap<size_t, size_t>::iterator MMAPIterator;
 typedef std::multimap<size_t, size_t>::const_iterator cMMAPIterator;
 
