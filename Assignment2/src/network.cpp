@@ -26,7 +26,7 @@ void Network::resize(const size_t& _n) {
 
 bool Network::add_link(const size_t& _a, const size_t& _b) {
 	
-	if(_a!=_b and _a<=0 and _b<=0 and _a < values.size() and _b < values.size()) {
+	if(_a!=_b and _a>=0 and _b>=0 and _a < values.size() and _b < values.size()) {
 		
 	std::pair<MMAPIterator, MMAPIterator> result = links.equal_range(_a);
 	
