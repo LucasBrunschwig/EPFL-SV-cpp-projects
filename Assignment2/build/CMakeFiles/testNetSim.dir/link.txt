@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -g -Wall -pedantic   CMakeFiles/testNetSim.dir/src/test_main.cpp.o CMakeFiles/testNetSim.dir/src/network.cpp.o CMakeFiles/testNetSim.dir/src/random.cpp.o  -o testNetSim  -L/home/lbrunsch/Desktop/Assignment2/lib -rdynamic -Wl,-Bstatic -lgtest -lgtest_main -Wl,-Bdynamic -lpthread -Wl,-rpath,/home/lbrunsch/Desktop/Assignment2/lib 
