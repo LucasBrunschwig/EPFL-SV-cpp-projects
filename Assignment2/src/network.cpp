@@ -15,10 +15,10 @@ void Network::resize(const size_t& _n) {
 	if( _n >= 0) {
 		if(values.size() == 0) {  
 		values = std::vector<double>(_n,0); 
-		RNG.uniform_double(values);
+		RNG.normal(values);
 		}
 		else if(values.size() < _n) {
-		for(size_t i(values.size()) ; i < _n ; i++) values.push_back(RNG.uniform_double());
+		for(size_t i(values.size()) ; i < _n ; i++) values.push_back(RNG.normal());
 		}
 		else if(values.size() > _n) {
 			for(size_t i(values.size()) ; i > _n ; i--) values.pop_back();
