@@ -3,7 +3,6 @@
 #include <iterator>
 #include "random.h"
 #include "network.h"
-#include <iostream>
 
 typedef std::multimap<size_t, size_t>::iterator MMAPIterator;
 typedef std::multimap<size_t, size_t>::const_iterator cMMAPIterator;
