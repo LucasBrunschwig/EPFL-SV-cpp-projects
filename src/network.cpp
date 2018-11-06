@@ -1,12 +1,9 @@
-#include "network.h"
 #include <algorithm>
 #include <functional>
 #include <iterator>
 #include "random.h"
+#include "network.h"
 #include <iostream>
-
-/*Modification test we want everything*/
-
 
 typedef std::multimap<size_t, size_t>::iterator MMAPIterator;
 typedef std::multimap<size_t, size_t>::const_iterator cMMAPIterator;
@@ -36,7 +33,6 @@ bool Network::add_link(const size_t& _a, const size_t& _b) {
 		for (MMAPIterator it = result.first; it != result.second; it++) {
 			if(it->second == _b) return false; //la pair existe déja!
 		}
-		
 		links.insert(std::make_pair(_a,_b));
 		links.insert(std::make_pair(_b,_a));
 		return true;
@@ -47,14 +43,17 @@ bool Network::add_link(const size_t& _a, const size_t& _b) {
 size_t Network::random_connect(const double& mean) {
 	size_t nLinks(0);
 	links.clear();
-	std::vector<int> nodes(values.size()), degrees(values.size());
+	std::vector<size_t> nodes(values.size());
+	std::vector<int> degrees(values.size());
+	for(size_t i(0) ; i < nodes.size() ;  i++) { nodes[i]=i;}
 	RNG.poisson(degrees, mean);
 	
 	for(size_t i(0) ; i < values.size() ; i++) {
 	size_t degree(degrees[i]);
 	if(degree > nodes.size()) degree=nodes.size();
+	
 			for(size_t j(0) ; j < degree ; j++)  {
-				RNG.uniform_int(nodes, 0, values.size());
+				RNG.shuffle(nodes);				
 				if(add_link(i,nodes[j]))  { nLinks++;}
 				else if(degree < values.size()) degree++;
 			}
@@ -106,8 +105,5 @@ std::vector<size_t> Network::neighbors(const size_t& _a) const {
 			Neighbors.push_back(it->second);
 		}
 	}
-	
-	return Neighbors;
-	
-	
-	}
+	return Neighbors;	
+}
